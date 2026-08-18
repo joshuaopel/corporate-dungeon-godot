@@ -28,7 +28,9 @@ Controls:
 - **Resource-driven weapons:** semi/full-auto triggers, pellets, spread, magazine/reserve ammo, reload, recoil, knockback, generated viewmodels, sound hooks, and FX hooks.
 - **Billboard enemies:** `AnimatedSprite3D` actors with mandatory `idle`, `move`, `attack`, and `death` animations; shared AI/damage behavior; per-resource health, speed, range, windup, tint, scale, score, sounds, and FX.
 - **Reusable FX:** one small runtime actor creates particle bursts, emissive quads, a fading light, and optional spatial sound from an `FxDefinition`.
-- **Cubicle Forge:** an editor dock for adding grid blocks or a complete room and painting one or many selected blocks from the surface palette.
+- **Content Studio:** a visual editor dock with animated previews, quick tuning, creation, duplication, and full-Inspector handoff for weapons, enemies, FX, and surfaces.
+- **Cubicle Forge 2:** additive, subtractive, and intersection CSG brushes; box/cylinder cuts; hollow rooms; door cuts; stair generation; surface painting; legacy-block conversion; and a bake-to-static workflow.
+- **Runtime-ready level bakes:** editable CSG source is converted into one static mesh node plus concave collision resources, then removed from the runtime tree.
 - **Modern presentation:** emissive architectural trim, colored dynamic lights, fog, screen feedback, animated reticle confirmations, view kick, head bob, and a diegetic corporate-security HUD.
 - **Validation:** content-schema validation and full-scene smoke tests runnable through Godot headless mode.
 
@@ -45,7 +47,7 @@ Then edit the duplicate in Godot's Inspector. Weapon and enemy variations do not
 ## Project map
 
 ```text
-addons/cubicle_forge/       editor room/block and surface tools
+addons/cubicle_forge/       Content Studio and CSG level-authoring docks
 assets/sprites/enemies/     billboard animation frames
 content/                    designer-authored .tres definitions
 scenes/                     reusable actors and playable demo
@@ -62,7 +64,7 @@ From this directory, using your Godot executable:
 ```powershell
 godot --headless --path . --script res://tools/validate_content.gd
 godot --headless --path . --script res://tools/smoke_test.gd
+godot --headless --path . --script res://tools/editor_pipeline_smoke_test.gd
 ```
 
-Both commands currently pass. The smoke test instantiates the playable scene and verifies the player, HUD, enemies, loadout, and Forge-generated level geometry.
-
+All three commands currently pass. The editor-pipeline check compiles the plugin and verifies that boolean CSG produces a static mesh and concave collision.

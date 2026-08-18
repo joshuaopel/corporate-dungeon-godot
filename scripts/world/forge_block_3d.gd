@@ -12,6 +12,10 @@ extends StaticBody3D
 		surface = value
 		_queue_rebuild()
 @export_enum("Architecture", "Floor", "Cover", "Trim", "Hazard") var block_role := "Architecture"
+@export var block_enabled := true:
+	set(value):
+		block_enabled = value
+		_queue_rebuild()
 @export var cast_shadow := true:
 	set(value):
 		cast_shadow = value
@@ -50,6 +54,7 @@ func _rebuild() -> void:
 		fallback.roughness = 0.78
 		box_mesh.material = fallback
 	mesh_instance.mesh = box_mesh
+	mesh_instance.visible = block_enabled
 	mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON if cast_shadow else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
 	var collision := get_node_or_null(NodePath(COLLISION_NAME)) as CollisionShape3D
@@ -60,4 +65,4 @@ func _rebuild() -> void:
 	var box_shape := BoxShape3D.new()
 	box_shape.size = size
 	collision.shape = box_shape
-
+	collision.disabled = not block_enabled

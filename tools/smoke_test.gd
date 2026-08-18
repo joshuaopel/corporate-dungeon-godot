@@ -23,8 +23,13 @@ func _run() -> void:
 	if weapon_controller:
 		_check(weapon_controller.loadout.size() == 3, "Three weapon resources load")
 		_check(weapon_controller.get_current_definition() != null, "Initial weapon equips")
-	var blocks := main.find_children("*", "ForgeBlock3D", true, false)
-	_check(blocks.size() >= 12, "Forge level blocks generate")
+	var baked_level := main.get_node_or_null("Level/BakedGeometry") as StaticBody3D
+	_check(baked_level != null, "Optimized static level geometry instantiates")
+	if baked_level:
+		var level_mesh := baked_level.get_node_or_null("Mesh") as MeshInstance3D
+		var level_collision := baked_level.get_node_or_null("Collision") as CollisionShape3D
+		_check(level_mesh != null and level_mesh.mesh != null, "Baked level mesh loads")
+		_check(level_collision != null and level_collision.shape != null, "Baked level collision loads")
 	main.queue_free()
 	await process_frame
 	_finish()
@@ -43,4 +48,3 @@ func _finish() -> void:
 	else:
 		print("SMOKE TEST FAILED: ", _failures)
 		quit(1)
-

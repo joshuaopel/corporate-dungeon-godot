@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/forge_block_3d.gd" id="1_block"]
+[ext_resource type="Resource" path="res://content/surfaces/blue_carpet.tres" id="2_carpet"]
+[ext_resource type="Resource" path="res://content/surfaces/obsidian_panel.tres" id="3_panel"]
+[ext_resource type="Resource" path="res://content/surfaces/concrete.tres" id="4_concrete"]
+[ext_resource type="Resource" path="res://content/surfaces/brass_trim.tres" id="5_brass"]
+[ext_resource type="Resource" path="res://content/surfaces/teal_emissive.tres" id="6_teal"]
+[ext_resource type="Resource" path="res://content/surfaces/magenta_emissive.tres" id="7_magenta"]
+[ext_resource type="Resource" path="res://content/surfaces/hazard_yellow.tres" id="8_hazard"]
+
+[node name="DemoFloor" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(30, 0.5, 36)
+surface = ExtResource("2_carpet")
+block_role = "Floor"
+position = Vector3(0, -0.25, 0)
+
+[node name="Ceiling" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(30, 0.5, 36)
+surface = ExtResource("3_panel")
+position = Vector3(0, 5.75, 0)
+
+[node name="WestWall" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(0.5, 6, 36)
+surface = ExtResource("3_panel")
+position = Vector3(-15.25, 2.75, 0)
+
+[node name="EastWall" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(0.5, 6, 36)
+surface = ExtResource("3_panel")
+position = Vector3(15.25, 2.75, 0)
+
+[node name="NorthWall" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(30, 6, 0.5)
+surface = ExtResource("4_concrete")
+position = Vector3(0, 2.75, -18.25)
+
+[node name="SouthWall" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(30, 6, 0.5)
+surface = ExtResource("4_concrete")
+position = Vector3(0, 2.75, 18.25)
+
+[node name="ReceptionDesk" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(8, 1.35, 1.2)
+surface = ExtResource("5_brass")
+block_role = "Cover"
+position = Vector3(0, 0.675, 9)
+
+[node name="LeftCubicle" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(7.5, 2.1, 0.35)
+surface = ExtResource("4_concrete")
+block_role = "Cover"
+position = Vector3(-8.5, 1.05, 1.5)
+
+[node name="RightCubicle" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(7.5, 2.1, 0.35)
+surface = ExtResource("4_concrete")
+block_role = "Cover"
+position = Vector3(8.5, 1.05, 1.5)
+
+[node name="LeftWing" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(0.35, 2.1, 7)
+surface = ExtResource("4_concrete")
+block_role = "Cover"
+position = Vector3(-5, 1.05, -1.8)
+
+[node name="RightWing" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(0.35, 2.1, 7)
+surface = ExtResource("4_concrete")
+block_role = "Cover"
+position = Vector3(5, 1.05, -1.8)
+
+[node name="BoardroomTable" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(7.5, 0.8, 2.4)
+surface = ExtResource("3_panel")
+block_role = "Cover"
+position = Vector3(0, 0.8, -9.5)
+
+[node name="TealCeilingStrip" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(0.16, 0.12, 28)
+surface = ExtResource("6_teal")
+block_role = "Trim"
+cast_shadow = false
+position = Vector3(-7.5, 5.44, 0)
+
+[node name="MagentaCeilingStrip" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(0.16, 0.12, 28)
+surface = ExtResource("7_magenta")
+block_role = "Trim"
+cast_shadow = false
+position = Vector3(7.5, 5.44, 0)
+
+[node name="NorthSign" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(8, 1.1, 0.1)
+surface = ExtResource("7_magenta")
+block_role = "Trim"
+cast_shadow = false
+position = Vector3(0, 3.6, -17.95)
+
+[node name="HazardLeft" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(0.5, 0.08, 8)
+surface = ExtResource("8_hazard")
+block_role = "Hazard"
+position = Vector3(-2.2, 0.05, -9)
+
+[node name="HazardRight" type="StaticBody3D" parent="."]
+script = ExtResource("1_block")
+size = Vector3(0.5, 0.08, 8)
+surface = ExtResource("8_hazard")
+block_role = "Hazard"
+position = Vector3(2.2, 0.05, -9)
+

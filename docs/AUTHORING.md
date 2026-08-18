@@ -2,10 +2,22 @@
 
 The pipeline separates authored data from runtime behavior. A weapon, enemy, FX burst, or surface is a small `.tres` file. The shared actors in `scenes/` interpret those resources, so most new content needs no GDScript.
 
+## Content Studio
+
+Enable the **Cubicle Forge + Content Studio** plugin and open the **Content Studio** dock on the right side of the Godot editor. It provides four visual libraries: Weapons, Enemies, FX, and Surfaces.
+
+- Select an asset to see a purpose-built preview and gameplay summary.
+- Tune the common balance and presentation fields directly in the dock; quick-field edits save immediately.
+- Use **+ New** to make a valid resource with sensible dependencies already assigned.
+- Use **Duplicate** to create a variant without duplicating referenced FX or animation resources.
+- Use **Inspector** for every advanced field, audio slot, SpriteFrames assignment, or material property.
+
+Enemy previews play the `idle` animation. Weapon previews use the generated viewmodel silhouette and colors. FX previews animate their burst palette and density. Surface previews show the palette used by Cubicle Forge.
+
 ## Weapons
 
-1. Duplicate `content/_templates/new_weapon.tres` into `content/weapons/`.
-2. Rename the file and edit it in the Inspector.
+1. In Content Studio, choose **Weapons** and click **+ New**, or duplicate `content/_templates/new_weapon.tres` into `content/weapons/`.
+2. Tune the common values visually, then use **Inspector** for optional audio and FX references.
 3. Select `Player/Head/Camera3D/WeaponController` in `scenes/player/player.tscn`.
 4. Increase the Loadout array size and assign the resource.
 5. Run `tools/validate_content.gd`.
@@ -29,7 +41,7 @@ The runtime controller is hitscan-first. That suits the immediate response of cl
    - `attack` — normally non-looping
    - `death` — non-looping
 
-3. Duplicate `content/_templates/new_enemy.tres` into `content/enemies/`.
+3. Use Content Studio's **Enemies** category to create/duplicate the definition, or duplicate `content/_templates/new_enemy.tres` manually.
 4. Assign the `SpriteFrames` and tune stats/feedback.
 5. Instance `scenes/enemies/billboard_enemy.tscn` in a level and assign the definition.
 
@@ -43,20 +55,30 @@ Duplicate `content/_templates/new_fx.tres`. `FxDefinition` controls the two-colo
 
 The shared burst actor is intentionally cheap and composable. Bespoke effects—persistent smoke, decals, beams, animated impact sprites—should be separate scenes referenced by a future `PackedScene` field, while ordinary hit feedback stays data-only.
 
-## Cubicle Forge level workflow
+## Cubicle Forge 2 level workflow
 
-The plugin is enabled in `project.godot`. In the Godot editor, open **Cubicle Forge** in the left dock.
+The plugin is enabled in `project.godot`. Open **Cubicle Forge** in the left dock. Structural geometry should use editable CSG brushes and be baked before gameplay. `ForgeBlock3D` remains available for a small number of independent modular props.
 
 1. Open a 3D scene.
-2. Click **+ 16m TEST ROOM** for a sealed starter room or **+ 2m BLOCK** for a single brush-like solid.
-3. Change a block's **Size** in the Inspector. Sizes snap to 0.25 m. Keep Transform Scale at `(1,1,1)` so collision and visuals stay identical.
-4. Multi-select Forge blocks and click a surface in the dock to paint all of them.
-5. Duplicate blocks with Godot's normal scene tools to build corridors, stairs, pillars, cover, trims, and arena boundaries.
-6. Save the result as its own scene and instance it into the game scene.
+2. Click **Room Shell** for a hollow starting room, or **+ Add Box** to start a new CSG root.
+3. Resize box brushes with Godot's built-in viewport handles. Transforms and the inherited CSG **Operation** remain editable in the Inspector.
+4. Add **Cut Box**, **Cylinder Cut**, or **Door Cut** brushes to carve the current solid. Use **Intersect** when only overlapping volume should remain.
+5. Use **Stair Run** for an editable eight-step generator. The steps remain ordinary additive brushes.
+6. Multi-select primitives and click a surface to paint them. A cut brush's material controls newly exposed cut faces where Godot's CSG result supports it.
+7. Select the CSG root or any child brush and click **Bake Selected CSG for Gameplay**.
+8. Save the scene after baking. Use **Edit Source** later, make changes, then bake again. **Show Bake** previews the optimized result.
 
-This is a BSP-like workflow in feel—solid brushes, grid snapping, rapid greybox, palette painting—but it stays Godot-native. Each block generates its own mesh and collision in editor and at runtime. It does not compile a binary Doom BSP tree. That keeps iteration immediate and scenes merge-friendly.
+The bake writes an `ArrayMesh` and `ConcavePolygonShape3D` into `generated/forge_bakes/`, installs one static-body sibling, hides the CSG authoring tree, and links the two. At runtime the baked node is forced visible and the editable source tree queues itself for removal. This avoids a level made from hundreds of independent mesh/collision nodes and avoids live CSG recomputation during play.
 
-Painting is currently per block. Split a wall into adjacent blocks when regions need different surfaces; that also makes trim and secret-panel logic easier later. Surface resources carry a material, palette swatch, footstep family, and optional contact-damage metadata, so sound and hazards have a clean expansion point.
+The included demo already uses this split: `demo_floor_source.tscn` retains the 17 editable legacy blocks, while `demo_floor.tscn` contains only the generated static mesh and collision used by `main.tscn`. Run `tools/rebuild_demo_floor_bake.gd` after changing the source scene.
+
+Godot positions CSG as a prototyping system and recommends baking final results into static geometry because live CSG carries significant CPU cost. Keep separate CSG roots for unrelated rooms/props rather than one world-sized boolean tree. Official references: [CSG tools](https://docs.godotengine.org/en/stable/tutorials/3d/csg_tools.html) and [CSGShape3D baking](https://docs.godotengine.org/en/stable/classes/class_csgshape3d.html).
+
+### Migrating existing block levels
+
+Multi-select existing `ForgeBlock3D` nodes and click **Blocks → CSG**. Cubicle Forge creates equivalent additive brushes using their transforms, sizes, and surfaces, then disables the old blocks without deleting them. Inspect the result, add cuts where useful, bake it, and only remove the disabled originals after the baked scene has been verified.
+
+This is BSP-like in feel—solid brushes, boolean cuts, rapid greybox, and palette painting—but it stays Godot-native and does not compile a Doom BSP tree. Godot CSG has no built-in per-face UV editor, so production texture alignment still benefits from modular materials, triplanar shaders, or a final DCC pass for hero spaces.
 
 ## Modern flair without losing readability
 
@@ -81,7 +103,7 @@ Run both checks before committing content:
 ```powershell
 godot --headless --path . --script res://tools/validate_content.gd
 godot --headless --path . --script res://tools/smoke_test.gd
+godot --headless --path . --script res://tools/editor_pipeline_smoke_test.gd
 ```
 
-The validator catches missing materials, effects, core weapon values, enemy frames, and animation names. The smoke test catches broken scene references and runtime initialization failures.
-
+The content validator catches missing materials, effects, core weapon values, enemy frames, and animation names. The gameplay smoke test catches broken scene references and runtime initialization failures. The editor-pipeline test compiles all plugin scripts and verifies boolean mesh/collision baking.
