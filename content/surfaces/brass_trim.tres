@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SurfaceDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/surface_definition.gd" id="1_surface"]
+
+[sub_resource type="StandardMaterial3D" id="Material_brass"]
+albedo_color = Color(0.58, 0.37, 0.08, 1)
+metallic = 0.92
+roughness = 0.22
+
+[resource]
+script = ExtResource("1_surface")
+display_name = "Executive Brass"
+material = SubResource("Material_brass")
+palette_color = Color(0.75, 0.48, 0.12, 1)
+footstep_family = 2
+editor_category = "Trim"
+

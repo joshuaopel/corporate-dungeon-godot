@@ -1,0 +1,34 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/corporate_idle_a.svg" id="1_idle_a"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/corporate_idle_b.svg" id="2_idle_b"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/corporate_move_a.svg" id="3_move_a"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/corporate_move_b.svg" id="4_move_b"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/corporate_attack_a.svg" id="5_attack_a"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/corporate_attack_b.svg" id="6_attack_b"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/corporate_death_a.svg" id="7_death_a"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/corporate_death_b.svg" id="8_death_b"]
+
+[resource]
+animations = [{
+"frames": [{"duration": 1.0, "texture": ExtResource("1_idle_a")}, {"duration": 1.0, "texture": ExtResource("2_idle_b")}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("3_move_a")}, {"duration": 1.0, "texture": ExtResource("4_move_b")}],
+"loop": true,
+"name": &"move",
+"speed": 7.5
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("5_attack_a")}, {"duration": 1.0, "texture": ExtResource("6_attack_b")}],
+"loop": false,
+"name": &"attack",
+"speed": 5.5
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("7_death_a")}, {"duration": 1.0, "texture": ExtResource("8_death_b")}],
+"loop": false,
+"name": &"death",
+"speed": 3.0
+}]
+

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FxDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/fx_definition.gd" id="1_fx"]
+
+[resource]
+script = ExtResource("1_fx")
+display_name = "Hostile Dissolution"
+color = Color(1, 0.18, 0.46, 1)
+secondary_color = Color(0.396, 0.957, 0.835, 1)
+particle_count = 42
+lifetime = 0.7
+min_speed = 2.2
+max_speed = 10.0
+particle_size = 0.09
+light_energy = 5.0
+light_range = 6.0
+

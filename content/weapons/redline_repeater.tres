@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="WeaponDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/weapon_definition.gd" id="1_weapon"]
+[ext_resource type="Resource" path="res://content/fx/muzzle_teal.tres" id="2_muzzle"]
+[ext_resource type="Resource" path="res://content/fx/impact_paper.tres" id="3_impact"]
+
+[resource]
+script = ExtResource("1_weapon")
+display_name = "REDLINE REPEATER"
+designer_notes = "Full-auto pressure weapon. Low individual damage, fast cadence, restrained recoil."
+trigger_mode = 1
+rounds_per_minute = 820.0
+damage = 10.0
+pellets = 1
+spread_radians = 0.017
+range_meters = 95.0
+knockback = 2.0
+magazine_size = 40
+starting_reserve = 160
+reload_seconds = 1.4
+recoil_degrees = 0.62
+camera_shake = 0.02
+view_kick = 0.038
+viewmodel_color = Color(0.12, 0.15, 0.18, 1)
+accent_color = Color(0.98, 0.73, 0.18, 1)
+viewmodel_shape = 2
+muzzle_fx = ExtResource("2_muzzle")
+impact_fx = ExtResource("3_impact")
+

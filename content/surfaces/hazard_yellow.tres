@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SurfaceDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/surface_definition.gd" id="1_surface"]
+
+[sub_resource type="StandardMaterial3D" id="Material_hazard"]
+albedo_color = Color(0.88, 0.55, 0.03, 1)
+metallic = 0.45
+roughness = 0.38
+emission_enabled = true
+emission = Color(0.9, 0.42, 0.01, 1)
+emission_energy_multiplier = 1.4
+
+[resource]
+script = ExtResource("1_surface")
+display_name = "Risk Management Yellow"
+material = SubResource("Material_hazard")
+palette_color = Color(0.95, 0.6, 0.04, 1)
+footstep_family = 2
+editor_category = "Hazard"
+

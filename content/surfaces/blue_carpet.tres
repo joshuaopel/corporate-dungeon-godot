@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SurfaceDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/surface_definition.gd" id="1_surface"]
+
+[sub_resource type="StandardMaterial3D" id="Material_carpet"]
+albedo_color = Color(0.055, 0.09, 0.15, 1)
+roughness = 0.94
+
+[resource]
+script = ExtResource("1_surface")
+display_name = "Midnight Carpet"
+designer_notes = "Low-reflectance office carpet for floors and acoustic panels."
+material = SubResource("Material_carpet")
+palette_color = Color(0.055, 0.09, 0.15, 1)
+footstep_family = 0
+editor_category = "Floors"
+

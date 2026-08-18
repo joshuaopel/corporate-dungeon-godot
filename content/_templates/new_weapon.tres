@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="WeaponDefinition" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/weapon_definition.gd" id="1_weapon"]
+[ext_resource type="Resource" path="res://content/fx/muzzle_teal.tres" id="2_muzzle"]
+[ext_resource type="Resource" path="res://content/fx/impact_paper.tres" id="3_impact"]
+
+[resource]
+script = ExtResource("1_weapon")
+display_name = "NEW WEAPON"
+designer_notes = "Duplicate this resource into content/weapons, tune it in the Inspector, then add it to the Player WeaponController loadout."
+rounds_per_minute = 420.0
+damage = 20.0
+pellets = 1
+spread_radians = 0.008
+range_meters = 120.0
+knockback = 4.0
+magazine_size = 12
+starting_reserve = 72
+reload_seconds = 1.15
+recoil_degrees = 1.4
+camera_shake = 0.035
+view_kick = 0.07
+viewmodel_color = Color(0.1, 0.16, 0.25, 1)
+accent_color = Color(0.396, 0.957, 0.835, 1)
+muzzle_fx = ExtResource("2_muzzle")
+impact_fx = ExtResource("3_impact")
+

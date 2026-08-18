@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SurfaceDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/surface_definition.gd" id="1_surface"]
+
+[sub_resource type="StandardMaterial3D" id="Material_teal"]
+shading_mode = 0
+albedo_color = Color(0.08, 0.32, 0.29, 1)
+emission_enabled = true
+emission = Color(0.396, 0.957, 0.835, 1)
+emission_energy_multiplier = 4.0
+
+[resource]
+script = ExtResource("1_surface")
+display_name = "Compliance Teal"
+material = SubResource("Material_teal")
+palette_color = Color(0.396, 0.957, 0.835, 1)
+footstep_family = 4
+editor_category = "Emissive"
+

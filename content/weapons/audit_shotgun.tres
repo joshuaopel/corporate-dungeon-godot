@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="WeaponDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/weapon_definition.gd" id="1_weapon"]
+[ext_resource type="Resource" path="res://content/fx/muzzle_magenta.tres" id="2_muzzle"]
+[ext_resource type="Resource" path="res://content/fx/impact_paper.tres" id="3_impact"]
+
+[resource]
+script = ExtResource("1_weapon")
+display_name = "AUDIT SHOTGUN"
+designer_notes = "Close-range crowd control. Eight ray pellets make it simple to tune without a projectile scene."
+trigger_mode = 0
+rounds_per_minute = 105.0
+damage = 13.0
+pellets = 8
+spread_radians = 0.052
+range_meters = 65.0
+knockback = 9.5
+magazine_size = 6
+starting_reserve = 36
+reload_seconds = 1.65
+recoil_degrees = 4.8
+camera_shake = 0.085
+view_kick = 0.15
+viewmodel_color = Color(0.16, 0.04, 0.1, 1)
+accent_color = Color(1, 0.22, 0.52, 1)
+viewmodel_shape = 1
+muzzle_fx = ExtResource("2_muzzle")
+impact_fx = ExtResource("3_impact")
+

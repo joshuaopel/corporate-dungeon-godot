@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SurfaceDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/surface_definition.gd" id="1_surface"]
+
+[sub_resource type="StandardMaterial3D" id="Material_magenta"]
+shading_mode = 0
+albedo_color = Color(0.36, 0.035, 0.14, 1)
+emission_enabled = true
+emission = Color(1, 0.15, 0.46, 1)
+emission_energy_multiplier = 4.5
+
+[resource]
+script = ExtResource("1_surface")
+display_name = "Hostile Magenta"
+material = SubResource("Material_magenta")
+palette_color = Color(1, 0.15, 0.46, 1)
+footstep_family = 4
+editor_category = "Emissive"
+

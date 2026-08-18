@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SurfaceDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/surface_definition.gd" id="1_surface"]
+
+[sub_resource type="StandardMaterial3D" id="Material_concrete"]
+albedo_color = Color(0.19, 0.22, 0.25, 1)
+roughness = 0.82
+
+[resource]
+script = ExtResource("1_surface")
+display_name = "Boardroom Concrete"
+material = SubResource("Material_concrete")
+palette_color = Color(0.19, 0.22, 0.25, 1)
+footstep_family = 1
+editor_category = "Architecture"
+

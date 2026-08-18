@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="240" viewBox="0 0 640 240">
+  <rect width="640" height="240" fill="#040914"/>
+  <g transform="translate(34 33)">
+    <rect width="174" height="174" rx="22" fill="#101d30" stroke="#65f4d5" stroke-width="7"/>
+    <path d="M35 40h104v18H35zm0 38h70v18H35zm0 38h88v18H35z" fill="#e7f0ef"/>
+    <path d="M122 76l47 27-47 27z" fill="#ff2764"/>
+  </g>
+  <text x="240" y="103" fill="#e7f0ef" font-family="Arial Black,Arial" font-size="42" letter-spacing="2">CORPORATE</text>
+  <text x="240" y="153" fill="#65f4d5" font-family="Arial Black,Arial" font-size="42" letter-spacing="2">DUNGEON</text>
+  <text x="243" y="186" fill="#d6a23d" font-family="Arial, sans-serif" font-size="15" letter-spacing="5">HOSTILE TAKEOVER</text>
+</svg>
+

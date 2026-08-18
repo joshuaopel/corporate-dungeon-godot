@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FxDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/fx_definition.gd" id="1_fx"]
+
+[resource]
+script = ExtResource("1_fx")
+display_name = "Teal Muzzle Snap"
+color = Color(0.396, 0.957, 0.835, 1)
+secondary_color = Color(0.82, 1, 0.96, 1)
+particle_count = 9
+lifetime = 0.16
+min_speed = 1.0
+max_speed = 4.0
+particle_size = 0.055
+light_energy = 2.8
+light_range = 3.4
+

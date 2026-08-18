@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_player"]
+[ext_resource type="Script" path="res://scripts/player/weapon_controller.gd" id="2_weapon"]
+[ext_resource type="Resource" path="res://content/weapons/executive_stapler.tres" id="3_stapler"]
+[ext_resource type="Resource" path="res://content/weapons/audit_shotgun.tres" id="4_shotgun"]
+[ext_resource type="Resource" path="res://content/weapons/redline_repeater.tres" id="5_repeater"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape_player"]
+radius = 0.42
+height = 1.8
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.9, 0)
+shape = SubResource("CapsuleShape_player")
+
+[node name="Head" type="Node3D" parent="."]
+position = Vector3(0, 1.55, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+current = true
+fov = 84.0
+near = 0.04
+
+[node name="WeaponController" type="Node3D" parent="Head/Camera3D"]
+script = ExtResource("2_weapon")
+loadout = [ExtResource("3_stapler"), ExtResource("4_shotgun"), ExtResource("5_repeater")]

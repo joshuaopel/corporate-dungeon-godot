@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyDefinition" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_definition.gd" id="1_enemy"]
+[ext_resource type="SpriteFrames" path="res://content/enemies/corporate_sprite_frames.tres" id="2_frames"]
+[ext_resource type="Resource" path="res://content/fx/hostile_burst.tres" id="3_death"]
+[ext_resource type="Resource" path="res://content/fx/impact_paper.tres" id="4_hit"]
+
+[resource]
+script = ExtResource("1_enemy")
+display_name = "MIDDLE MANAGER"
+designer_notes = "Large bruiser variant demonstrating how one sprite set can drive multiple enemy definitions."
+sprite_frames = ExtResource("2_frames")
+sprite_tint = Color(1, 0.45, 0.67, 1)
+sprite_scale = 1.55
+max_health = 145.0
+stagger_threshold = 32.0
+score_value = 250
+move_speed = 2.45
+awareness_range = 26.0
+preferred_range = 2.6
+contact_damage = 22.0
+attack_cooldown = 1.55
+attack_windup = 0.48
+death_fx = ExtResource("3_death")
+hit_fx = ExtResource("4_hit")
+
